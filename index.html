@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0D0B0C" />
+  <meta name="format-detection" content="telephone=yes" />
+  <title>Studio TR10 | Academia em Uberaba-MG</title>
+  <meta name="description" content="Studio TR10, academia e treino em Uberaba-MG. Nota 4.9 no Google. Agende sua aula experimental pelo WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0D0B0C;
+      --bg-soft: #161314;
+      --bg-card: #1a1617;
+      --accent: #E11D2E;
+      --accent-dark: #A8141F;
+      --text: #FFFFFF;
+      --text-2: #CCCCCC;
+      --text-3: #8a8485;
+      --line: rgba(255, 255, 255, 0.1);
+      --ease-lift: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-title: 'Oswald', 'Bebas Neue', Impact, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: var(--font-title); font-weight: 700; text-transform: uppercase; line-height: 1.08; letter-spacing: 0.02em; }
+    section { padding: 56px 18px; scroll-margin-top: 72px; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .eyebrow { color: var(--accent); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px; display: block; }
+    .section-title { font-size: clamp(1.9rem, 5vw, 2.9rem); margin-bottom: 14px; }
+    .section-lead { color: var(--text-2); max-width: 620px; margin-bottom: 36px; }
+    .muted { color: var(--text-2); }
+
+    /* Botões */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; max-width: 100%; text-align: center; padding: 14px 26px; background: var(--accent); color: #fff; font-family: var(--font-body); font-weight: 700; font-size: 0.92rem; letter-spacing: 0.05em; text-transform: uppercase; border: 2px solid var(--accent); border-radius: 0; cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+    .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-ghost { background: transparent; }
+    .btn-ghost:hover { background: var(--accent); border-color: var(--accent); }
+    :focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+    /* Header fixo */
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(13, 11, 12, 0.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .header-inner { max-width: 1100px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { font-family: var(--font-title); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.06em; }
+    .logo span { color: var(--accent); }
+    .rating { display: none; font-size: 0.85rem; color: var(--text-2); }
+    .rating strong { color: #fff; }
+    .header .btn { min-height: 44px; padding: 10px 16px; font-size: 0.78rem; white-space: nowrap; }
+    .hide-sm { display: none; }
+
+    /* Hero */
+    .hero { position: relative; min-height: 70vh; display: flex; align-items: center; overflow: hidden; background: radial-gradient(ellipse at 85% 15%, rgba(225, 29, 46, 0.26), transparent 55%), radial-gradient(ellipse at 0% 100%, rgba(225, 29, 46, 0.08), transparent 50%), var(--bg); border-bottom: 1px solid var(--line); }
+    .hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; mask-image: linear-gradient(to bottom, #000 30%, transparent); }
+    .hero .wrap { position: relative; z-index: 1; padding: 40px 0; }
+    .hero h1 { font-size: clamp(2.5rem, 11vw, 5.4rem); margin-bottom: 18px; overflow-wrap: anywhere; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { font-size: 1.05rem; color: var(--text-2); max-width: 540px; margin-bottom: 32px; }
+    .hero-actions { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 36px; }
+    .hero-actions .btn { width: 100%; }
+    .hero-stats { display: grid; grid-template-columns: repeat(2, auto); gap: 0; justify-content: start; border-top: 1px solid var(--line); padding-top: 22px; max-width: 520px; }
+    .hero-stats div { padding-right: 24px; margin-right: 24px; border-right: 1px solid var(--line); }
+    .hero-stats div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+    .hero-stats strong { display: block; font-family: var(--font-title); font-size: 1.9rem; line-height: 1; }
+    .hero-stats span { font-size: 0.75rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* Cards (modalidades e planos) */
+    .cards { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    .card { display: block; position: relative; background: var(--bg-soft); border: 1px solid var(--line); border-top: 3px solid var(--accent); padding: 24px 22px; height: 100%; }
+    .card h3 { font-size: 1.35rem; margin-bottom: 10px; }
+    .card p { color: var(--text-2); font-size: 0.95rem; }
+    .card-num { display: block; font-family: var(--font-title); font-size: 0.9rem; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 14px; }
+    .card-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: #fff; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .card-cta svg { transition: transform 0.26s var(--ease-lift); }
+    .placeholder { display: inline-block; background: rgba(225, 29, 46, 0.14); border: 1px dashed var(--accent); color: #fff; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; padding: 4px 10px; }
+
+    /* Cards clicáveis: o card inteiro é um link */
+    .card-link { color: inherit; cursor: pointer; transition: transform 260ms var(--ease-lift), box-shadow 260ms var(--ease-lift), border-color 260ms var(--ease-lift), background 260ms var(--ease-lift); }
+    .card-link:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+    @media (hover: hover) and (pointer: fine) {
+      .card-link:hover,
+      .card-link:focus-visible {
+        transform: translateY(-6px) scale(1.015);
+        border-color: rgba(225, 29, 46, 0.6);
+        background: var(--bg-card);
+        box-shadow: 0 18px 40px -12px rgba(225, 29, 46, 0.4), 0 0 0 1px rgba(225, 29, 46, 0.25);
+      }
+      .card-link:hover .card-cta svg,
+      .card-link:focus-visible .card-cta svg { transform: translateX(5px); }
+    }
+    /* Feedback de toque/clique: vale para mouse e toque */
+    .card-link:active { transform: translateY(-2px) scale(0.99); transition-duration: 120ms; }
+
+    /* Planos */
+    .plans { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .plan-price { font-family: var(--font-title); font-size: 2.4rem; line-height: 1; margin: 12px 0 6px; }
+    .plan-period { font-size: 0.85rem; color: var(--text-3); }
+    .plan-card ul { list-style: none; margin-top: 18px; }
+    .plan-card li { padding: 10px 0 10px 22px; border-top: 1px solid var(--line); color: var(--text-2); font-size: 0.93rem; position: relative; }
+    .plan-card li::before { content: ''; position: absolute; left: 0; top: 17px; width: 8px; height: 2px; background: var(--accent); }
+    .plan-card.featured { background: var(--bg-card); border-top-color: #fff; box-shadow: 0 0 0 1px rgba(225, 29, 46, 0.35) inset; }
+    .plan-tag { display: inline-block; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; padding: 5px 9px; margin-bottom: 14px; text-transform: uppercase; }
+    .plans-note { margin-top: 26px; color: var(--text-3); font-size: 0.85rem; }
+
+    /* Como funciona */
+    .steps { display: grid; gap: 18px; grid-template-columns: 1fr; counter-reset: step; }
+    .step { position: relative; padding: 28px 24px 26px; background: var(--bg-soft); border: 1px solid var(--line); }
+    .step::before { counter-increment: step; content: counter(step, decimal-leading-zero); display: block; font-family: var(--font-title); font-size: 2rem; line-height: 1; color: var(--accent); margin-bottom: 14px; }
+    .step h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .step p { color: var(--text-2); font-size: 0.94rem; }
+
+    /* Localização */
+    .loc { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
+    .loc iframe { width: 100%; height: 260px; border: 1px solid var(--line); filter: grayscale(0.35) contrast(1.05); }
+    .address { font-size: 1.05rem; margin-bottom: 22px; color: var(--text-2); }
+    .address strong { color: #fff; }
+
+    /* Avaliações */
+    .reviews { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    .review { background: var(--bg-soft); border: 1px solid var(--line); padding: 24px; }
+    .stars { color: var(--accent); letter-spacing: 3px; margin-bottom: 12px; font-size: 1rem; }
+    .review p { color: var(--text-2); font-size: 0.92rem; }
+    .link-line { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; color: #fff; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+
+    /* Contato */
+    .contact-wrap { display: grid; gap: 36px; grid-template-columns: 1fr; }
+    .form { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    .form label { display: grid; gap: 7px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); }
+    .form input, .form select { min-height: 52px; padding: 12px 14px; background: #0a0909; border: 1px solid #3a3536; border-radius: 0; color: #fff; font: inherit; font-size: 1rem; }
+    .form input:focus, .form select:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(225, 29, 46, 0.25); }
+    .form .btn { width: 100%; }
+    .contact-side { border-left: 3px solid var(--accent); padding-left: 24px; color: var(--text-2); }
+    .contact-side strong { color: #fff; display: block; font-family: var(--font-title); font-size: 1.3rem; text-transform: uppercase; margin-bottom: 8px; }
+
+    /* Chamada final */
+    .cta-band { background: linear-gradient(120deg, #1d0708, #0D0B0C 70%); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; padding: 84px 20px; }
+    .cta-band h2 { font-size: clamp(2.1rem, 6vw, 3.4rem); margin-bottom: 14px; }
+    .cta-band p { max-width: 520px; margin: 0 auto 30px; color: var(--text-2); }
+
+    /* Rodapé */
+    footer { background: #070607; padding: 48px 20px 96px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; gap: 26px; grid-template-columns: 1fr; font-size: 0.92rem; color: var(--text-2); }
+    .footer-inner strong { color: #fff; }
+    .footer-inner a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+    .footer-bottom { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 20px; font-size: 0.8rem; color: var(--text-3); }
+
+    /* Revelação ao rolar: só ativa quando o JS roda e o usuário não pediu movimento reduzido */
+    html.js-reveal .reveal { opacity: 0; transition: opacity 450ms ease-out, transform 260ms var(--ease-lift), box-shadow 260ms var(--ease-lift), border-color 260ms var(--ease-lift); }
+    html.js-reveal .reveal.is-visible { opacity: 1; }
+
+    /* Selo fixo F9 Coding (obrigatório) */
+    .f9-watermark { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 9999; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; background: rgba(13, 11, 12, 0.92); border: 1px solid rgba(124, 240, 194, 0.18); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); color: #fff; font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 0.02em; line-height: 1; white-space: nowrap; pointer-events: none; user-select: none; }
+    .f9-logo { width: 22px; height: 22px; display: inline-flex; flex-shrink: 0; }
+    .f9-logo svg { width: 100%; height: 100%; display: block; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn, .card-link, .card-cta svg, html.js-reveal .reveal { transition: none; }
+      .card-link:hover, .card-link:focus-visible, .card-link:active { transform: none; }
+    }
+
+    /* Breakpoints (mobile first) */
+    @media (min-width: 640px) {
+      .cards, .reviews { grid-template-columns: repeat(2, 1fr); }
+      .rating { display: block; }
+      .hero-stats div { padding-right: 32px; margin-right: 32px; }
+      .hero-actions { display: flex; flex-wrap: wrap; }
+      .hero-actions .btn { width: auto; }
+      .hide-sm { display: inline; }
+    }
+    @media (min-width: 900px) {
+      section { padding: 96px 24px; }
+      .cards { grid-template-columns: repeat(3, 1fr); }
+      .reviews { grid-template-columns: repeat(3, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+      .loc { grid-template-columns: 1fr 1.2fr; }
+      .contact-wrap { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; }
+    }
+    @media (max-width: 639px) {
+      .f9-watermark { font-size: 11px; bottom: 10px; padding: 5px 12px 5px 5px; }
+      .f9-logo { width: 20px; height: 20px; }
+      .header-inner { padding: 10px 14px; }
+      .logo { font-size: 1.2rem; }
+      .header .btn { padding: 10px 14px; font-size: 0.74rem; }
+      .card-cta { font-size: 0.78rem; }
+      .step { padding: 24px 20px; }
+      .cta-band { padding: 64px 18px 72px; }
+      footer { padding: 40px 18px 104px; }
+      .hero-stats { grid-template-columns: repeat(2, auto); }
+      .hero-stats div { padding-right: 12px; margin-right: 12px; }
+      .hero-stats strong { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER FIXO -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#inicio" class="logo" aria-label="Studio TR10, início">STUDIO <span>TR10</span></a>
+      <div class="rating" aria-label="Avaliação no Google">
+        <strong>4.9 ★</strong> (60 avaliações Google)
+      </div>
+      <a class="btn" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20no%20Studio%20TR10." target="_blank" rel="noopener">Agendar<span class="hide-sm">&nbsp;aula experimental</span></a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="wrap">
+        <span class="eyebrow">Uberaba-MG</span>
+        <h1>Treine com <em>foco</em> no Studio TR10</h1>
+        <p>Um espaço para treinar com constância, com atendimento próximo e a nota de quem já treina aqui. Agende sua aula experimental e conheça por dentro.</p>
+        <div class="hero-actions">
+          <a class="btn" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20no%20Studio%20TR10." target="_blank" rel="noopener">Agendar aula experimental</a>
+          <a class="btn btn-ghost" href="#planos">Ver planos</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>4.9</strong><span>Nota no Google</span></div>
+          <div><strong>60</strong><span>Avaliações</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODALIDADES (cards clicáveis: abrem o WhatsApp) -->
+    <section id="modalidades">
+      <div class="wrap">
+        <span class="eyebrow">Modalidades</span>
+        <h2 class="section-title">O que você encontra aqui</h2>
+        <p class="section-lead">Escolha uma modalidade e fale direto com a equipe para tirar dúvidas e marcar sua aula.</p>
+        <div class="cards">
+          <!-- PLACEHOLDER: trocar pelo nome e descrição de cada modalidade do Studio TR10 -->
+          <a class="card card-link lift reveal" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20modalidades%20do%20Studio%20TR10." target="_blank" rel="noopener">
+            <span class="card-num">01</span>
+            <h3>Modalidade 1</h3>
+            <p><span class="placeholder">A CONFIRMAR</span></p>
+            <span class="card-cta">Quero saber mais <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="card card-link lift reveal" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20modalidades%20do%20Studio%20TR10." target="_blank" rel="noopener">
+            <span class="card-num">02</span>
+            <h3>Modalidade 2</h3>
+            <p><span class="placeholder">A CONFIRMAR</span></p>
+            <span class="card-cta">Quero saber mais <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="card card-link lift reveal" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20modalidades%20do%20Studio%20TR10." target="_blank" rel="noopener">
+            <span class="card-num">03</span>
+            <h3>Modalidade 3</h3>
+            <p><span class="placeholder">A CONFIRMAR</span></p>
+            <span class="card-cta">Quero saber mais <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA (processo genérico: confirmar com a academia) -->
+    <section id="como-funciona" style="border-top: 1px solid var(--line);">
+      <div class="wrap">
+        <span class="eyebrow">Passo a passo</span>
+        <h2 class="section-title">Como funciona sua aula experimental</h2>
+        <p class="section-lead">Sem compromisso: você conhece o espaço e decide depois.</p>
+        <div class="steps">
+          <article class="step reveal">
+            <h3>Chame no WhatsApp</h3>
+            <p>Escolha o melhor horário para sua aula experimental direto pelo botão da página.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Conheça o espaço</h3>
+            <p>A equipe apresenta a academia e tira suas dúvidas sobre treino e rotina.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Treine com orientação</h3>
+            <p>Sinta o treino na prática antes de decidir qual plano faz sentido para você.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANOS (cards clicáveis: abrem o WhatsApp com o plano escolhido) -->
+    <section id="planos" class="plans">
+      <div class="wrap">
+        <span class="eyebrow">Planos</span>
+        <h2 class="section-title">Escolha seu plano</h2>
+        <p class="section-lead">Os valores e benefícios são passados pela equipe. Toque no plano para pedir os detalhes.</p>
+        <div class="cards">
+          <!-- PLACEHOLDER: valores e 3 benefícios de cada plano a confirmar. Sem desconto ou fidelidade. -->
+          <a class="card card-link lift reveal" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Plano%201%20do%20Studio%20TR10." target="_blank" rel="noopener">
+            <h3>Plano 1</h3>
+            <div class="plan-price"><span class="placeholder">A CONFIRMAR</span></div>
+            <span class="plan-period">por mês</span>
+            <ul>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+            </ul>
+            <span class="card-cta">Pedir detalhes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="card card-link lift reveal plan-card featured" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Plano%202%20do%20Studio%20TR10." target="_blank" rel="noopener">
+            <span class="plan-tag">Destaque</span>
+            <h3>Plano 2</h3>
+            <div class="plan-price"><span class="placeholder">A CONFIRMAR</span></div>
+            <span class="plan-period">por mês</span>
+            <ul>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+            </ul>
+            <span class="card-cta">Pedir detalhes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="card card-link lift reveal" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Plano%203%20do%20Studio%20TR10." target="_blank" rel="noopener">
+            <h3>Plano 3</h3>
+            <div class="plan-price"><span class="placeholder">A CONFIRMAR</span></div>
+            <span class="plan-period">por mês</span>
+            <ul>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+              <li><span class="placeholder">A CONFIRMAR</span></li>
+            </ul>
+            <span class="card-cta">Pedir detalhes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+        <p class="plans-note">Preços e condições são confirmados diretamente com a equipe.</p>
+      </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO -->
+    <section id="localizacao">
+      <div class="wrap loc">
+        <div>
+          <span class="eyebrow">Localização</span>
+          <h2 class="section-title">Venha nos visitar</h2>
+          <p class="address"><strong>R. Castro Alves, 603</strong><br />Vila Nossa Sra. Abadia<br />Uberaba - MG, 38025-380</p>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Castro+Alves,+603,+Uberaba+-+MG,+38025-380" target="_blank" rel="noopener">Como chegar</a>
+        </div>
+        <iframe
+          title="Mapa do Studio TR10 em Uberaba"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=R.+Castro+Alves,+603+-+Uberaba+-+MG,+38025-380&amp;output=embed"></iframe>
+      </div>
+    </section>
+
+    <!-- AVALIAÇÕES (texto, não clicável) -->
+    <section id="avaliacoes" style="background: var(--bg-soft); border-top: 1px solid var(--line);">
+      <div class="wrap">
+        <span class="eyebrow">Avaliações</span>
+        <h2 class="section-title">4.9 ★ no Google, com 60 avaliações</h2>
+        <p class="section-lead">O que os alunos dizem depois de treinar aqui.</p>
+        <div class="reviews">
+          <!-- PLACEHOLDER: colar aqui até 3 avaliações reais do Google (texto, nome e data). Não inventar. -->
+          <article class="review reveal">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p><span class="placeholder">A CONFIRMAR: avaliação real</span></p>
+          </article>
+          <article class="review reveal">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p><span class="placeholder">A CONFIRMAR: avaliação real</span></p>
+          </article>
+          <article class="review reveal">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p><span class="placeholder">A CONFIRMAR: avaliação real</span></p>
+          </article>
+        </div>
+        <!-- PLACEHOLDER: trocar pelo link real do perfil do Studio TR10 no Google -->
+        <a class="link-line" href="#" target="_blank" rel="noopener">Ver todas no Google</a>
+      </div>
+    </section>
+
+    <!-- CONTATO (formulário) -->
+    <section id="contato" style="border-top: 1px solid var(--line);">
+      <div class="wrap contact-wrap">
+        <div>
+          <span class="eyebrow">Contato</span>
+          <h2 class="section-title">Agende sua aula experimental</h2>
+          <p class="section-lead">Preencha os dados e a equipe responde pelo WhatsApp.</p>
+          <form class="form" id="contatoForm">
+            <label>Nome
+              <input type="text" id="nome" name="nome" autocomplete="name" required />
+            </label>
+            <label>WhatsApp
+              <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="(34) 99999-9999" required />
+            </label>
+            <label>Horário preferido
+              <select id="horario" name="horario" required>
+                <option value="08:00">Manhã (8h)</option>
+                <option value="14:00">Tarde (14h)</option>
+                <option value="18:00" selected>Noite (18h)</option>
+              </select>
+            </label>
+            <button class="btn" type="submit">Enviar pelo WhatsApp</button>
+          </form>
+        </div>
+        <aside class="contact-side">
+          <strong>Fale direto com a equipe</strong>
+          <p>Prefere falar agora? Chame no WhatsApp, responde a equipe do Studio TR10.</p>
+          <p style="margin-top: 14px;"><a class="btn btn-ghost" href="https://wa.me/5534988374462" target="_blank" rel="noopener">(34) 98837-4462</a></p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- CHAMADA FINAL -->
+  <section class="cta-band">
+    <div class="wrap">
+      <span class="eyebrow">Pronto para começar?</span>
+      <h2>Marque sua aula experimental</h2>
+      <p>Fale direto com a equipe pelo WhatsApp e escolha o melhor horário para você.</p>
+      <a class="btn" href="https://wa.me/5534988374462?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20no%20Studio%20TR10." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="logo" style="margin-bottom: 10px;">STUDIO <span>TR10</span></div>
+        <p>Academia e treino em Uberaba-MG.</p>
+      </div>
+      <div>
+        <p><strong>Endereço</strong><br />R. Castro Alves, 603 - Vila Nossa Sra. Abadia<br />Uberaba - MG, 38025-380</p>
+      </div>
+      <div>
+        <p><strong>Contato</strong><br />
+          <a href="https://wa.me/5534988374462" target="_blank" rel="noopener">WhatsApp (34) 98837-4462</a>
+        </p>
+      </div>
+      <div class="footer-bottom">
+        © <span id="ano">2026</span> Studio TR10. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SELO FIXO DE PRÉVIA (F9 Coding) -->
+  <div class="f9-watermark" role="note" aria-label="Prévia criada por F9 Coding">
+    <span class="f9-logo" aria-hidden="true">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="f9bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f7a55"/><stop offset="1" stop-color="#0a2e21"/></linearGradient>
+          <linearGradient id="f9glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2fff3"/><stop offset="1" stop-color="#7cf0c2"/></linearGradient>
+        </defs>
+        <rect width="32" height="32" rx="8" fill="url(#f9bg)"/>
+        <path d="M11 25V8h12v3.5h-8v4h6.5V19H15v6z" fill="url(#f9glass)" stroke="#ffffff" stroke-width="1.2" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span>Prévia criada por F9 Coding · uso não autorizado</span>
+  </div>
+
+  <script>
+    // Ano atual no rodapé
+    document.getElementById('ano').textContent = new Date().getFullYear();
+
+    // Revelação ao rolar: um único IntersectionObserver para a página inteira.
+    // Se o JS falhar, o movimento for reduzido ou o observer não existir, nada fica oculto.
+    (function () {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const items = document.querySelectorAll('.reveal');
+      if (reduce || !('IntersectionObserver' in window) || items.length === 0) return;
+
+      document.documentElement.classList.add('js-reveal');
+
+      items.forEach((el) => {
+        // Escalonamento curto entre irmãos (máx. 3 × 80 ms)
+        const idx = Array.prototype.indexOf.call(el.parentElement.children, el);
+        el.style.transitionDelay = Math.min(idx, 3) * 80 + 'ms';
+        // Limpa o atraso depois da revelação, para não atrasar o hover
+        el.addEventListener('transitionend', (e) => {
+          if (e.propertyName === 'opacity') el.style.transitionDelay = '';
+        });
+      });
+
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      items.forEach((el) => io.observe(el));
+    })();
+
+    // Formulário: monta a mensagem e abre o WhatsApp do Studio TR10
+    document.getElementById('contatoForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const horario = document.getElementById('horario').value;
+      const texto = 'Olá, meu nome é ' + nome + '. Meu WhatsApp é ' + whatsapp + '. Prefiro treinar às ' + horario + '.';
+      window.open('https://wa.me/5534988374462?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>
